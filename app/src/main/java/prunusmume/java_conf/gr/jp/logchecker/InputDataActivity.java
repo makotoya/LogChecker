@@ -18,12 +18,16 @@ public class InputDataActivity extends AppCompatActivity {
      EditText mEditSetS;
      Button mButton;
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_data);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
+
+        setTitle("検収情報の入力");
 
         mEditSetF = (EditText) findViewById(R.id.editSetField);
         mEditSetD = (EditText) findViewById(R.id.editSetDestination);
@@ -34,12 +38,16 @@ public class InputDataActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InputDataActivity.this, MainActivity.class);
-                intent.putExtra("field", mEditSetF.getText().toString());
-                intent.putExtra("destination", mEditSetD.getText().toString());
-                intent.putExtra("length", Integer.parseInt(mEditSetL.getText().toString()));
-                intent.putExtra("species", mEditSetS.getText().toString());
-                startActivity(intent);
+                if (mEditSetL.length() == 0) {
+                    Snackbar.make(v, "「材長」を入力してください", Snackbar.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(InputDataActivity.this, MainActivity.class);
+                    intent.putExtra("field", mEditSetF.getText().toString());
+                    intent.putExtra("destination", mEditSetD.getText().toString());
+                    intent.putExtra("length", Integer.parseInt(mEditSetL.getText().toString()));
+                    intent.putExtra("species", mEditSetS.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
 
