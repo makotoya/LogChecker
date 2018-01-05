@@ -48,18 +48,30 @@ public class RecordAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (convertView == null) {
-            convertView = mLayoutInflater.inflate(android.R.layout.simple_list_item_2, null);
+        if (convertView == null) {                                  //↓ここをcustomlist_recordにしたい
+            convertView = mLayoutInflater.inflate(R.layout.customlist_record, null);
         }
 
-        TextView textView1 = (TextView) convertView.findViewById(android.R.id.text1);
-        TextView textView2 = (TextView) convertView.findViewById(android.R.id.text2);
+        TextView mTextListField, mTextListDestination, mTextListSpecies, mTextListLength,mTextListNumSum,mTextListVolSum,mTextListDate;
 
-        textView1.setText(mRecordList.get(position).getRecField());
+        mTextListField = (TextView) convertView.findViewById(R.id.textRecField);
+        mTextListDestination = (TextView) convertView.findViewById(R.id.textRecDestination);
+        mTextListSpecies = (TextView) convertView.findViewById(R.id.textRecSpecies);
+        mTextListLength  = (TextView) convertView.findViewById(R.id.textRecLength);
+        mTextListNumSum  = (TextView) convertView.findViewById(R.id.textRecNumSum);
+        mTextListVolSum = (TextView) convertView.findViewById(R.id.textRecVolSum);
+        mTextListDate = (TextView) convertView.findViewById(R.id.textDate);
+
+        mTextListField.setText(mRecordList.get(position).getRecField());
+        mTextListDestination.setText(mRecordList.get(position).getRecDestination());
+        mTextListSpecies.setText(mRecordList.get(position).getRecSpecies());
+        mTextListLength.setText(String.valueOf(mRecordList.get(position).getRecLength()));
+        mTextListNumSum.setText(String.valueOf(mRecordList.get(position).getRecNumSum()));
+        mTextListVolSum.setText(String.valueOf(mRecordList.get(position).getRecVolSum()));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.JAPANESE);
         Date date = mRecordList.get(position).getDate();
-        textView2.setText(simpleDateFormat.format(date));
+        mTextListDate.setText(simpleDateFormat.format(date));
 
         return convertView;
     }

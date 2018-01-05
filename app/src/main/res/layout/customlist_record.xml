@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -46,62 +39,60 @@
 
             <TextView
                 android:id="@+id/textRecSpecies"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
                 android:text="ヒノキ"
+                android:textColor="@android:color/holo_red_light"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textRecLength"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="2"
                 android:textAlignment="textEnd"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textMeter"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="left|bottom"
                 android:text="m"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textRecNumSum"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.5"
                 android:text="545"
                 android:textAlignment="textEnd"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textNumber"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="left|bottom"
                 android:text="本"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textRecVolSum"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
                 android:text="115.123"
                 android:textAlignment="textEnd"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textVol"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="left|bottom"
                 android:text="m3"
                 android:textSize="14sp" />
@@ -115,5 +106,4 @@
             android:text="2017/12/16/20:17"
             android:textAlignment="textEnd" />
 
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

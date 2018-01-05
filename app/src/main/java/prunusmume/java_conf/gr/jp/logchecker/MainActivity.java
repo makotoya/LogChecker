@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         dia58_se = soundPool.load(this, R.raw.dia58, 1);
         dia60_se = soundPool.load(this, R.raw.dia60, 1);
 
+        final Vibrator vib = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
         mFieldText = (TextView) findViewById(R.id.textField);
         mDestinationText = (TextView) findViewById(R.id.textDestination);
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol8Text.setText(String.valueOf(vol8));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -183,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol8Text.setText(String.valueOf(vol8));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -205,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol9Text.setText(String.valueOf(vol9));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -220,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol9Text.setText(String.valueOf(vol9));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -242,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol10Text.setText(String.valueOf(vol10));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -257,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol10Text.setText(String.valueOf(vol10));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -279,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol11Text.setText(String.valueOf(vol11));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -294,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol11Text.setText(String.valueOf(vol11));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -316,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol12Text.setText(String.valueOf(vol12));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -331,6 +342,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol12Text.setText(String.valueOf(vol12));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -353,6 +365,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol13Text.setText(String.valueOf(vol13));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -368,6 +381,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol13Text.setText(String.valueOf(vol13));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -390,6 +404,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol14Text.setText(String.valueOf(vol14));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -405,6 +420,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol14Text.setText(String.valueOf(vol14));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -427,6 +443,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol16Text.setText(String.valueOf(vol16));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -442,6 +459,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol16Text.setText(String.valueOf(vol16));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -464,6 +482,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol18Text.setText(String.valueOf(vol18));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -479,6 +498,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol18Text.setText(String.valueOf(vol18));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -501,6 +521,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol20Text.setText(String.valueOf(vol20));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -516,6 +537,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol20Text.setText(String.valueOf(vol20));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -538,6 +560,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol22Text.setText(String.valueOf(vol22));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -553,6 +576,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol22Text.setText(String.valueOf(vol22));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -575,6 +599,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol24Text.setText(String.valueOf(vol24));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -590,6 +615,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol24Text.setText(String.valueOf(vol24));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -612,6 +638,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol26Text.setText(String.valueOf(vol26));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -627,6 +654,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol26Text.setText(String.valueOf(vol26));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -649,6 +677,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol28Text.setText(String.valueOf(vol28));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -664,6 +693,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol28Text.setText(String.valueOf(vol28));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -686,6 +716,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol30Text.setText(String.valueOf(vol30));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -701,6 +732,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol30Text.setText(String.valueOf(vol30));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -723,6 +755,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol32Text.setText(String.valueOf(vol32));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -738,6 +771,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol32Text.setText(String.valueOf(vol32));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -760,6 +794,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol34Text.setText(String.valueOf(vol34));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -775,6 +810,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol34Text.setText(String.valueOf(vol34));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -797,6 +833,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol36Text.setText(String.valueOf(vol36));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -812,6 +849,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol36Text.setText(String.valueOf(vol36));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -834,6 +872,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol38Text.setText(String.valueOf(vol38));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -849,6 +888,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol38Text.setText(String.valueOf(vol38));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -871,6 +911,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol40Text.setText(String.valueOf(vol40));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -886,6 +927,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol40Text.setText(String.valueOf(vol40));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -908,6 +950,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol42Text.setText(String.valueOf(vol42));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -923,6 +966,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol42Text.setText(String.valueOf(vol42));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -945,6 +989,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol44Text.setText(String.valueOf(vol44));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -960,6 +1005,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol44Text.setText(String.valueOf(vol44));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -982,6 +1028,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol46Text.setText(String.valueOf(vol46));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -997,6 +1044,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol46Text.setText(String.valueOf(vol46));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1019,6 +1067,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol48Text.setText(String.valueOf(vol48));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1034,6 +1083,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol48Text.setText(String.valueOf(vol48));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1056,6 +1106,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol50Text.setText(String.valueOf(vol50));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1071,6 +1122,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol50Text.setText(String.valueOf(vol50));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1093,6 +1145,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol52Text.setText(String.valueOf(vol52));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1108,6 +1161,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol52Text.setText(String.valueOf(vol52));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1130,6 +1184,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol54Text.setText(String.valueOf(vol54));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1145,6 +1200,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol54Text.setText(String.valueOf(vol54));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1167,6 +1223,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol56Text.setText(String.valueOf(vol56));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1182,6 +1239,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol56Text.setText(String.valueOf(vol56));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1204,6 +1262,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol58Text.setText(String.valueOf(vol58));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1219,6 +1278,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol58Text.setText(String.valueOf(vol58));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1241,6 +1301,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol60Text.setText(String.valueOf(vol60));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1256,6 +1317,7 @@ public class MainActivity extends AppCompatActivity {
                 mVol60Text.setText(String.valueOf(vol60));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
                 mVolSumText.setText(String.valueOf(volsum));
+                vib.vibrate(250);
             }
         });
 
@@ -1265,10 +1327,27 @@ public class MainActivity extends AppCompatActivity {
             destination = intent.getStringExtra("destination");
             species = intent.getStringExtra("species");
             loglength = intent.getIntExtra("length", 0);
-            mFieldText.setText(field);
-            mDestinationText.setText(destination);
-            mSpeciesText.setText(species);
+
+            if (field.length() == 0) {
+                mFieldText.setText("未設定");
+            } else {
+                mFieldText.setText(field);
+            }
+
+            if (destination.length() == 0) {
+                mDestinationText.setText("未設定");
+            } else {
+                mDestinationText.setText(destination);
+            }
+
+            if (species.length() == 0) {
+                mSpeciesText.setText("未設定");
+            } else {
+                mSpeciesText.setText(species);
+            }
+
             mLengthText.setText(String.valueOf(loglength));
+
         } else {
             field = mRecord.getRecField();
             mFieldText.setText(field);

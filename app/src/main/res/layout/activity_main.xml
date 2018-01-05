@@ -221,6 +221,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -237,16 +238,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub8"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum8"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -260,11 +260,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd8"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol8"
@@ -280,6 +279,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -296,16 +296,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub9"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum9"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -319,11 +318,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd9"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol9"
@@ -340,6 +338,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -356,16 +355,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub10"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum10"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -379,11 +377,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd10"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol10"
@@ -399,6 +396,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -415,16 +413,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub11"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum11"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -438,11 +435,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd11"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol11"
@@ -459,6 +455,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -475,16 +472,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub12"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum12"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -498,11 +494,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd12"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol12"
@@ -518,6 +513,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -534,16 +530,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub13"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum13"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -557,11 +552,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd13"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol13"
@@ -578,6 +572,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -594,16 +589,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub14"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum14"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -617,11 +611,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd14"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol14"
@@ -637,6 +630,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -653,16 +647,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub16"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum16"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -676,11 +669,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd16"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol16"
@@ -697,6 +689,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -713,16 +706,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub18"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum18"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -736,11 +728,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd18"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol18"
@@ -756,6 +747,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -772,16 +764,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub20"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum20"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -795,11 +786,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd20"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol20"
@@ -816,6 +806,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -832,16 +823,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub22"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum22"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -855,11 +845,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd22"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol22"
@@ -875,6 +864,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -891,16 +881,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub24"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum24"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -914,11 +903,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd24"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol24"
@@ -935,6 +923,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -951,16 +940,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub26"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum26"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -974,11 +962,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd26"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol26"
@@ -994,6 +981,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1010,16 +998,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub28"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum28"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1033,11 +1020,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd28"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol28"
@@ -1054,6 +1040,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1070,16 +1057,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub30"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum30"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1093,11 +1079,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd30"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol30"
@@ -1113,6 +1098,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1129,16 +1115,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub32"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum32"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1152,11 +1137,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd32"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol32"
@@ -1173,6 +1157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1189,16 +1174,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub34"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum34"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1212,11 +1196,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd34"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol34"
@@ -1232,6 +1215,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1248,16 +1232,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub36"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum36"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1271,11 +1254,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd36"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol36"
@@ -1291,6 +1273,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1307,16 +1291,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub38"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum38"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1330,11 +1313,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd38"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol38"
@@ -1350,6 +1332,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1366,16 +1349,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub40"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum40"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1389,11 +1371,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd40"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol40"
@@ -1409,6 +1390,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="#FFE4C4"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1425,16 +1408,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub42"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum42"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1448,11 +1430,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd42"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol42"
@@ -1468,6 +1449,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1484,16 +1466,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub44"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum44"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1507,11 +1488,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd44"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol44"
@@ -1527,6 +1507,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="#FFE4C4"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1543,16 +1525,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub46"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum46"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1566,11 +1547,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd46"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol46"
@@ -1586,6 +1566,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1602,16 +1583,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub48"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum48"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1625,11 +1605,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd48"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol48"
@@ -1645,6 +1624,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1661,16 +1642,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub50"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum50"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1684,11 +1664,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd50"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol50"
@@ -1704,10 +1683,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textDiameter"
+                        android:id="@+id/textDia52"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -1720,16 +1700,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub52"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum52"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1743,11 +1722,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd52"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol52"
@@ -1763,6 +1741,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1779,16 +1759,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub54"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum54"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1802,11 +1781,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd54"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol54"
@@ -1822,6 +1800,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1838,16 +1817,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub56"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum56"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1861,11 +1839,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd56"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol56"
@@ -1881,6 +1858,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="#FFE4C4"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1897,16 +1876,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub58"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum58"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1920,11 +1898,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd58"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol58"
@@ -1941,6 +1918,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1957,16 +1935,15 @@
 
                     <ImageButton
                         android:id="@+id/iButtonSub60"
-                        android:layout_width="46dp"
-                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sub_icon" />
+                        android:background="@drawable/image_stateful2"
+                        android:scaleType="fitCenter" />
 
                     <EditText
                         android:id="@+id/eTextNum60"
-                        android:layout_width="81dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -1980,11 +1957,10 @@
                     <ImageButton
                         android:id="@+id/iButtonAdd60"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="64dp"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/plus_icon" />
+                        android:background="@drawable/image_stateful"
+                        android:scaleType="centerInside" />
 
                     <TextView
                         android:id="@+id/textVol60"

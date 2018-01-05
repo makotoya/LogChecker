@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+    <group android:id="@+id/group_0">
+        <item
+            android:id="@+id/nav_input"
+            android:icon="@drawable/pencil"
+            android:title="検収情報の入力" />
+        <item
+            android:id="@+id/nav_favourite"
+            android:icon="@drawable/favourite"
+            android:title="お気に入り" />
+        <item
+            android:id="@+id/nav_fav_sync"
+            android:title="お気に入りの同期" />
+        <item
+            android:id="@+id/nav_cheking"
+            android:icon="@drawable/ruler"
+            android:title="検収作業" />
+        <item
+            android:id="@+id/nav_record"
+            android:icon="@drawable/pastrecord"
+            android:title="過去の検収記録" />
+    </group>
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/login"
+            android:title="ログイン" />
+
+    </group>
+</menu>
