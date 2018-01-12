@@ -6,13 +6,20 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -33,6 +40,8 @@ import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
+    GlobalRecord globalRecord;
+
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     String field;
@@ -48,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     int logdia;
 
     //直径ごとの本数
-    int num8, num9, num10, num11, num12, num13, num14, num15, num16, num18,  num20,
+    int num8, num9, num10, num11, num12, num13, num14, num16, num18,  num20,
          num22, num24, num26, num28, num30, num32, num34, num36, num38, num40,
          num42, num44, num46, num48, num50, num52, num54, num56, num58, num60;
 
@@ -67,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool;
     private int dia8_se, dia9_se, dia10_se, dia11_se, dia12_se, dia13_se, dia14_se, dia16_se, dia18_se, dia20_se,
                   dia22_se, dia24_se, dia26_se, dia28_se, dia30_se, dia32_se, dia34_se, dia36_se, dia38_se, dia40_se,
-                  dia42_se, dia44_se, dia46_se, dia48_se, dia50_se, dia52_se, dia54_se, dia56_se, dia58_se, dia60_se;
+                  dia42_se, dia44_se, dia46_se, dia48_se, dia50_se, dia52_se, dia54_se, dia56_se, dia58_se, dia60_se, minus1_se;
 
     EditText mNum8Edit,  mNum9Edit, mNum10Edit,  mNum11Edit, mNum12Edit,  mNum13Edit, mNum14Edit,  mNum16Edit, mNum18Edit,  mNum20Edit,
              mNum22Edit,  mNum24Edit, mNum26Edit,  mNum28Edit, mNum30Edit,  mNum32Edit, mNum34Edit,  mNum36Edit, mNum38Edit,  mNum40Edit,
@@ -87,14 +96,35 @@ public class MainActivity extends AppCompatActivity {
                 mSub22ImgButton, mSub24ImgButton, mSub26ImgButton, mSub28ImgButton, mSub30ImgButton, mSub32ImgButton, mSub34ImgButton, mSub36ImgButton, mSub38ImgButton, mSub40ImgButton,
                 mSub42ImgButton, mSub44ImgButton, mSub46ImgButton, mSub48ImgButton, mSub50ImgButton, mSub52ImgButton, mSub54ImgButton, mSub56ImgButton, mSub58ImgButton, mSub60ImgButton;
 
+    TextView mTextSetP;
+    TextView mTextSetF;
+    TextView mTextSetY;
+    TextView mTextSetD;
+    TextView mTextSetL;
+    TextView mTextSetS;
+    TextView mTextSetI;
+    TextView mTextSetNumSum;
+    TextView mTextSetVolSum;
+
     private Record mRecord;
+
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
-        soundPool = new SoundPool(30, AudioManager.STREAM_MUSIC, 0);
+        setTitle("検収作業");
+
+        globalRecord = (GlobalRecord) this.getApplication();
+
+        //表示画面のフラグを立てる
+        globalRecord.presentdisplay = 1;
+
+        soundPool = new SoundPool(31, AudioManager.STREAM_MUSIC, 0);
         dia8_se = soundPool.load(this, R.raw.dia8, 1);
         dia9_se = soundPool.load(this, R.raw.dia9, 1);
         dia10_se = soundPool.load(this, R.raw.dia10, 1);
@@ -125,15 +155,56 @@ public class MainActivity extends AppCompatActivity {
         dia56_se = soundPool.load(this, R.raw.dia56, 1);
         dia58_se = soundPool.load(this, R.raw.dia58, 1);
         dia60_se = soundPool.load(this, R.raw.dia60, 1);
+        minus1_se = soundPool.load(this, R.raw.minus1, 1);
 
         final Vibrator vib = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
-        mFieldText = (TextView) findViewById(R.id.textField);
-        mDestinationText = (TextView) findViewById(R.id.textDestination);
-        mLengthText = (TextView) findViewById(R.id.textLength);
-        mSpeciesText = (TextView) findViewById(R.id.textSpecies);
-        mNumSumText = (TextView) findViewById(R.id.textView5);
-        mVolSumText = (TextView) findViewById(R.id.textView6);
+        // ナビゲーションドロワーの設定
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar, R.string.app_name, R.string.app_name);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final View navHeaderView = navigationView.getHeaderView(0);
+
+        mTextSetP = (TextView) navHeaderView.findViewById(R.id.textHeadProject);
+        mTextSetF = (TextView) navHeaderView.findViewById(R.id.textHeadField);
+        mTextSetY = (TextView) navHeaderView.findViewById(R.id.textHeadYard);
+        mTextSetD = (TextView) navHeaderView.findViewById(R.id.textHeadDestination);
+        mTextSetS = (TextView) navHeaderView.findViewById(R.id.textHeadSpecies);
+        mTextSetL = (TextView) navHeaderView.findViewById(R.id.textHeadLength);
+        mTextSetI = (TextView) navHeaderView.findViewById(R.id.textHeadInvestigator);
+        mTextSetNumSum = (TextView) navHeaderView.findViewById(R.id.textHeadNumSum);
+        mTextSetVolSum = (TextView) navHeaderView.findViewById(R.id.textHeadVolSum);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_input) {
+                    Intent intent = new Intent(getApplicationContext(), InputDataActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_cheking) {
+                } else if (id == R.id.nav_fav_sync) {
+                } else if (id == R.id.nav_cheking) {
+                }
+
+                //表示画面によってドロワーの項目表示を変更
+                Menu menu = navigationView.getMenu();
+                MenuItem menuItem1 = menu.findItem(R.id.nav_input_clearInfo);
+                if (globalRecord.presentdisplay == 0) {
+                    menuItem1.setVisible(true);
+                } else if (globalRecord.presentdisplay == 1) {
+                    menuItem1.setVisible(false);
+                }
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int recordId = intent.getIntExtra(RecordActivity.EXTRA_RECORD, -1);
+        Realm.init(getApplicationContext());
         Realm realm = Realm.getDefaultInstance();
         mRecord = realm.where(Record.class).equalTo("id", recordId).findFirst();
         realm.close();
@@ -161,32 +233,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia8_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num8 += 1;
                 mNum8Edit.setText(String.valueOf(num8));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 8;
                 vol8 = calcVol(logdia, loglength, num8);
                 mVol8Text.setText(String.valueOf(vol8));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num8 += num8;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol8 = vol8;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub8ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num8 -= 1;
                 mNum8Edit.setText(String.valueOf(num8));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 8;
                 vol8 = calcVol(logdia, loglength, num8);
                 mVol8Text.setText(String.valueOf(vol8));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num8 = num8;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol8 = vol8;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -200,32 +285,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia9_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num9 += 1;
                 mNum9Edit.setText(String.valueOf(num9));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 9;
                 vol9 = calcVol(logdia, loglength, num9);
                 mVol9Text.setText(String.valueOf(vol9));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num9 = num9;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol9 = vol9;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub9ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num9 -= 1;
                 mNum9Edit.setText(String.valueOf(num9));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 9;
                 vol9 = calcVol(logdia, loglength, num9);
                 mVol9Text.setText(String.valueOf(vol9));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num9 = num9;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol9 = vol9;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -239,32 +337,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia10_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num10 += 1;
                 mNum10Edit.setText(String.valueOf(num10));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 10;
                 vol10 = calcVol(logdia, loglength, num10);
                 mVol10Text.setText(String.valueOf(vol10));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num10 = num10;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol10 = vol10;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub10ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num10 -= 1;
                 mNum10Edit.setText(String.valueOf(num10));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 10;
                 vol10 = calcVol(logdia, loglength, num10);
                 mVol10Text.setText(String.valueOf(vol10));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num10 = num10;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol10 = vol10;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -278,32 +389,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia11_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num11 += 1;
                 mNum11Edit.setText(String.valueOf(num11));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 11;
                 vol11 = calcVol(logdia, loglength, num11);
                 mVol11Text.setText(String.valueOf(vol11));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num11 = num11;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol11 = vol11;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub11ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num11 -= 1;
                 mNum11Edit.setText(String.valueOf(num11));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 11;
                 vol11 = calcVol(logdia, loglength, num11);
                 mVol11Text.setText(String.valueOf(vol11));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num11 = num11;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol11 = vol11;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -317,32 +441,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia12_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num12 += 1;
                 mNum12Edit.setText(String.valueOf(num12));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 12;
                 vol12 = calcVol(logdia, loglength, num12);
                 mVol12Text.setText(String.valueOf(vol12));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num12 = num12;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol12 = vol12;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub12ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num12 -= 1;
                 mNum12Edit.setText(String.valueOf(num12));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 12;
                 vol12 = calcVol(logdia, loglength, num12);
                 mVol12Text.setText(String.valueOf(vol12));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num12 = num12;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol12 = vol12;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -356,32 +493,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia13_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num13 += 1;
                 mNum13Edit.setText(String.valueOf(num13));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 13;
                 vol13 = calcVol(logdia, loglength, num13);
                 mVol13Text.setText(String.valueOf(vol13));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num13 = num13;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol13 = vol13;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub13ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num13 -= 1;
                 mNum13Edit.setText(String.valueOf(num13));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 13;
                 vol13 = calcVol(logdia, loglength, num13);
                 mVol13Text.setText(String.valueOf(vol13));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num13 = num13;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol13 = vol13;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -395,32 +545,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia14_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num14 += 1;
                 mNum14Edit.setText(String.valueOf(num14));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 14;
                 vol14 = calcVol(logdia, loglength, num14);
                 mVol14Text.setText(String.valueOf(vol14));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num14 = num14;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol14 = vol14;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub14ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num14 -= 1;
                 mNum14Edit.setText(String.valueOf(num14));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 14;
                 vol14 = calcVol(logdia, loglength, num14);
                 mVol14Text.setText(String.valueOf(vol14));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num14 = num14;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol14 = vol14;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -434,32 +597,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia16_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num16 += 1;
                 mNum16Edit.setText(String.valueOf(num16));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 16;
                 vol16 = calcVol(logdia, loglength, num16);
                 mVol16Text.setText(String.valueOf(vol16));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num16 = num16;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol16 = vol16;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub16ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num16 -= 1;
                 mNum16Edit.setText(String.valueOf(num16));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 16;
                 vol16 = calcVol(logdia, loglength, num16);
                 mVol16Text.setText(String.valueOf(vol16));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num16 = num16;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol16 = vol16;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -473,32 +649,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia18_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num18 += 1;
                 mNum18Edit.setText(String.valueOf(num18));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 18;
                 vol18 = calcVol(logdia, loglength, num18);
                 mVol18Text.setText(String.valueOf(vol18));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num18 = num18;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol18 = vol18;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub18ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num18 -= 1;
                 mNum18Edit.setText(String.valueOf(num18));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 18;
                 vol18 = calcVol(logdia, loglength, num18);
                 mVol18Text.setText(String.valueOf(vol18));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num18 = num18;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol18 = vol18;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -512,32 +701,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia20_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num20 += 1;
                 mNum20Edit.setText(String.valueOf(num20));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 20;
                 vol20 = calcVol(logdia, loglength, num20);
                 mVol20Text.setText(String.valueOf(vol20));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num20 = num20;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol20 = vol20;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub20ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num20 -= 1;
                 mNum20Edit.setText(String.valueOf(num20));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 20;
                 vol20 = calcVol(logdia, loglength, num20);
                 mVol20Text.setText(String.valueOf(vol20));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num20 = num20;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol20 = vol20;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -551,32 +753,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia22_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num22 += 1;
                 mNum22Edit.setText(String.valueOf(num22));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 22;
                 vol22 = calcVol(logdia, loglength, num22);
                 mVol22Text.setText(String.valueOf(vol22));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num22 = num22;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol22 = vol22;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub22ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num22 -= 1;
                 mNum22Edit.setText(String.valueOf(num22));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 22;
                 vol22 = calcVol(logdia, loglength, num22);
                 mVol22Text.setText(String.valueOf(vol22));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num22 = num22;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol22 = vol22;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -590,32 +805,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia24_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num24 += 1;
                 mNum24Edit.setText(String.valueOf(num24));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 24;
                 vol24 = calcVol(logdia, loglength, num24);
                 mVol24Text.setText(String.valueOf(vol24));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num24 = num24;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol24 = vol24;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub24ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num24 -= 1;
                 mNum24Edit.setText(String.valueOf(num24));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 24;
                 vol24 = calcVol(logdia, loglength, num24);
                 mVol24Text.setText(String.valueOf(vol24));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num24 = num24;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol24 = vol24;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -629,32 +857,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia26_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num26 += 1;
                 mNum26Edit.setText(String.valueOf(num26));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 26;
                 vol26 = calcVol(logdia, loglength, num26);
                 mVol26Text.setText(String.valueOf(vol26));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num26 = num26;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol26 = vol26;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub26ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num26 -= 1;
                 mNum26Edit.setText(String.valueOf(num26));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 26;
                 vol26 = calcVol(logdia, loglength, num26);
                 mVol26Text.setText(String.valueOf(vol26));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num26 = num26;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol26 = vol26;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -668,32 +909,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia28_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num28 += 1;
                 mNum28Edit.setText(String.valueOf(num28));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 28;
                 vol28 = calcVol(logdia, loglength, num28);
                 mVol28Text.setText(String.valueOf(vol28));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num28 = num28;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol28 = vol28;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub28ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num28 -= 1;
                 mNum28Edit.setText(String.valueOf(num28));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 28;
                 vol28 = calcVol(logdia, loglength, num28);
                 mVol28Text.setText(String.valueOf(vol28));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num28 = num28;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol28 = vol28;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -707,32 +961,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia30_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num30 += 1;
                 mNum30Edit.setText(String.valueOf(num30));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 30;
                 vol30 = calcVol(logdia, loglength, num30);
                 mVol30Text.setText(String.valueOf(vol30));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num30 = num30;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol30 = vol30;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub30ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num30 -= 1;
                 mNum30Edit.setText(String.valueOf(num30));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 30;
                 vol30 = calcVol(logdia, loglength, num30);
                 mVol30Text.setText(String.valueOf(vol30));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num30 = num30;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol30 = vol30;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -746,32 +1013,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia32_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num32 += 1;
                 mNum32Edit.setText(String.valueOf(num32));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 32;
                 vol32 = calcVol(logdia, loglength, num32);
                 mVol32Text.setText(String.valueOf(vol32));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num32 = num32;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol32 = vol32;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub32ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num32 -= 1;
                 mNum32Edit.setText(String.valueOf(num32));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 32;
                 vol32 = calcVol(logdia, loglength, num32);
                 mVol32Text.setText(String.valueOf(vol32));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num32 = num32;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol32 = vol32;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -785,32 +1065,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia34_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num34 += 1;
                 mNum34Edit.setText(String.valueOf(num34));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 34;
                 vol34 = calcVol(logdia, loglength, num34);
                 mVol34Text.setText(String.valueOf(vol34));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num34 = num34;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol34 = vol34;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub34ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num34 -= 1;
                 mNum34Edit.setText(String.valueOf(num34));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 34;
                 vol34 = calcVol(logdia, loglength, num34);
                 mVol34Text.setText(String.valueOf(vol34));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num34 = num34;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol34 = vol34;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -824,32 +1117,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia36_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num36 += 1;
                 mNum36Edit.setText(String.valueOf(num36));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 36;
                 vol36 = calcVol(logdia, loglength, num36);
                 mVol36Text.setText(String.valueOf(vol36));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num36 = num36;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol36 = vol36;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub36ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num36 -= 1;
                 mNum36Edit.setText(String.valueOf(num36));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 36;
                 vol36 = calcVol(logdia, loglength, num36);
                 mVol36Text.setText(String.valueOf(vol36));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num36 = num36;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol36 = vol36;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -863,32 +1169,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia38_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num38 += 1;
                 mNum38Edit.setText(String.valueOf(num38));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 38;
                 vol38 = calcVol(logdia, loglength, num38);
                 mVol38Text.setText(String.valueOf(vol38));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num38 = num38;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol38 = vol38;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub38ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num38 -= 1;
                 mNum38Edit.setText(String.valueOf(num38));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 38;
                 vol38 = calcVol(logdia, loglength, num38);
                 mVol38Text.setText(String.valueOf(vol38));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num38 = num38;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol38 = vol38;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -902,32 +1221,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia40_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num40 += 1;
                 mNum40Edit.setText(String.valueOf(num40));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 40;
                 vol40 = calcVol(logdia, loglength, num40);
                 mVol40Text.setText(String.valueOf(vol40));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num40 = num40;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol40 = vol40;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub40ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num40 -= 1;
                 mNum40Edit.setText(String.valueOf(num40));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 40;
                 vol40 = calcVol(logdia, loglength, num40);
                 mVol40Text.setText(String.valueOf(vol40));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num40 = num40;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol40 = vol40;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -941,32 +1273,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia42_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num42 += 1;
                 mNum42Edit.setText(String.valueOf(num42));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 42;
                 vol42 = calcVol(logdia, loglength, num42);
                 mVol42Text.setText(String.valueOf(vol42));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num42 = num42;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol42 = vol42;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub42ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num42 -= 1;
                 mNum42Edit.setText(String.valueOf(num42));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 42;
                 vol42 = calcVol(logdia, loglength, num42);
                 mVol42Text.setText(String.valueOf(vol42));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num42 = num42;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol42 = vol42;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -980,32 +1325,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia44_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num44 += 1;
                 mNum44Edit.setText(String.valueOf(num44));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 44;
                 vol44 = calcVol(logdia, loglength, num44);
                 mVol44Text.setText(String.valueOf(vol44));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num44 = num44;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol44 = vol44;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub44ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num44 -= 1;
                 mNum44Edit.setText(String.valueOf(num44));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 44;
                 vol44 = calcVol(logdia, loglength, num44);
                 mVol44Text.setText(String.valueOf(vol44));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num44 = num44;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol44 = vol44;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1019,32 +1377,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia46_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num46 += 1;
                 mNum46Edit.setText(String.valueOf(num46));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 46;
                 vol46 = calcVol(logdia, loglength, num46);
                 mVol46Text.setText(String.valueOf(vol46));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num46 = num46;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol46 = vol46;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub46ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num46 -= 1;
                 mNum46Edit.setText(String.valueOf(num46));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 46;
                 vol46 = calcVol(logdia, loglength, num46);
                 mVol46Text.setText(String.valueOf(vol46));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num46 = num46;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol46 = vol46;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1058,32 +1429,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia48_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num48 += 1;
                 mNum48Edit.setText(String.valueOf(num48));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 48;
                 vol48 = calcVol(logdia, loglength, num48);
                 mVol48Text.setText(String.valueOf(vol48));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num48 = num48;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol48 = vol48;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub48ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num48 -= 1;
                 mNum48Edit.setText(String.valueOf(num48));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 48;
                 vol48 = calcVol(logdia, loglength, num48);
                 mVol48Text.setText(String.valueOf(vol48));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num48 = num48;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol48 = vol48;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1097,32 +1481,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia50_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num50 += 1;
                 mNum50Edit.setText(String.valueOf(num50));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 50;
                 vol50 = calcVol(logdia, loglength, num50);
                 mVol50Text.setText(String.valueOf(vol50));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num50 = num50;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol50 = vol50;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub50ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num50 -= 1;
                 mNum50Edit.setText(String.valueOf(num50));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 50;
                 vol50 = calcVol(logdia, loglength, num50);
                 mVol50Text.setText(String.valueOf(vol50));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num50 = num50;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol50 = vol50;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1136,32 +1533,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia52_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num52 += 1;
                 mNum52Edit.setText(String.valueOf(num52));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 52;
                 vol52 = calcVol(logdia, loglength, num52);
                 mVol52Text.setText(String.valueOf(vol52));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num52 = num52;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol52 = vol52;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub52ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num52 -= 1;
                 mNum52Edit.setText(String.valueOf(num52));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 52;
                 vol52 = calcVol(logdia, loglength, num52);
                 mVol52Text.setText(String.valueOf(vol52));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num52 = num52;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol52 = vol52;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1175,32 +1585,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia54_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num54 += 1;
                 mNum54Edit.setText(String.valueOf(num54));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 54;
                 vol54 = calcVol(logdia, loglength, num54);
                 mVol54Text.setText(String.valueOf(vol54));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num54 = num54;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol54 = vol54;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub54ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num54 -= 1;
                 mNum54Edit.setText(String.valueOf(num54));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 54;
                 vol54 = calcVol(logdia, loglength, num54);
                 mVol54Text.setText(String.valueOf(vol54));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num54 = num54;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol54 = vol54;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1214,32 +1637,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia56_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num56 += 1;
                 mNum56Edit.setText(String.valueOf(num56));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 56;
                 vol56 = calcVol(logdia, loglength, num56);
                 mVol56Text.setText(String.valueOf(vol56));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num56 = num56;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol56 = vol56;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub56ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num56 -= 1;
                 mNum56Edit.setText(String.valueOf(num56));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 56;
                 vol56 = calcVol(logdia, loglength, num56);
                 mVol56Text.setText(String.valueOf(vol56));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num56 = num56;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol56 = vol56;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1253,32 +1689,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia58_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num58 += 1;
                 mNum58Edit.setText(String.valueOf(num58));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 58;
                 vol58 = calcVol(logdia, loglength, num58);
                 mVol58Text.setText(String.valueOf(vol58));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num58 = num58;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol58 = vol58;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub58ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num58 -= 1;
                 mNum58Edit.setText(String.valueOf(num58));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 58;
                 vol58 = calcVol(logdia, loglength, num58);
                 mVol58Text.setText(String.valueOf(vol58));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num58 = num58;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol58 = vol58;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
@@ -1292,62 +1741,60 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soundPool.play(dia60_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num60 += 1;
                 mNum60Edit.setText(String.valueOf(num60));
                 numsum += 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 60;
                 vol60 = calcVol(logdia, loglength, num60);
                 mVol60Text.setText(String.valueOf(vol60));
                 volsum = volsum.add(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num60 = num60;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol60 = vol60;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         mSub60ImgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundPool.play(minus1_se, 1F, 1F, 0, 0, 1F);
+                vib.vibrate(250);
+
                 num60 -= 1;
                 mNum60Edit.setText(String.valueOf(num60));
                 numsum -= 1;
-                mNumSumText.setText(String.valueOf(numsum));
                 logdia = 60;
                 vol60 = calcVol(logdia, loglength, num60);
                 mVol60Text.setText(String.valueOf(vol60));
                 volsum = volsum.subtract(calcVol(logdia, loglength, 1));
-                mVolSumText.setText(String.valueOf(volsum));
-                vib.vibrate(250);
+
+                globalRecord.num60 = num60;
+                globalRecord.numsum = numsum;
+                mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+                globalRecord.vol60 = vol60;
+                globalRecord.volsum = volsum;
+                mTextSetVolSum.setText((String.valueOf(globalRecord.volsum)));
             }
         });
 
         if (mRecord == null) {
             //長さを受け取る
-            field = intent.getStringExtra("field");
-            destination = intent.getStringExtra("destination");
-            species = intent.getStringExtra("species");
-            loglength = intent.getIntExtra("length", 0);
-
-            if (field.length() == 0) {
-                mFieldText.setText("未設定");
-            } else {
-                mFieldText.setText(field);
-            }
-
-            if (destination.length() == 0) {
-                mDestinationText.setText("未設定");
-            } else {
-                mDestinationText.setText(destination);
-            }
-
-            if (species.length() == 0) {
-                mSpeciesText.setText("未設定");
-            } else {
-                mSpeciesText.setText(species);
-            }
-
-            mLengthText.setText(String.valueOf(loglength));
-
+            loglength = globalRecord.loglength;
+            mTextSetP.setText(String.valueOf(globalRecord.project));
+            mTextSetF.setText(String.valueOf(globalRecord.field));
+            mTextSetY.setText(String.valueOf(globalRecord.yard));
+            mTextSetD.setText(String.valueOf(globalRecord.destination));
+            mTextSetS.setText(String.valueOf(globalRecord.species));
+            mTextSetL.setText(String.valueOf(globalRecord.loglength) + "m");
+            mTextSetI.setText(String.valueOf(globalRecord.investigator));
+            mTextSetNumSum.setText(String.valueOf(globalRecord.numsum));
+            mTextSetVolSum.setText(String.valueOf(globalRecord.volsum));
         } else {
             field = mRecord.getRecField();
             mFieldText.setText(field);
