@@ -40,6 +40,7 @@ public class RecordActivity extends AppCompatActivity {
         setTitle("過去の検収記録");
 
         // Realmの設定
+        Realm.init(getApplicationContext());
         mRealm = Realm.getDefaultInstance();
         mRealm.addChangeListener(mRealmListener);
 
